@@ -1,7 +1,7 @@
 # 7s-assignment
 
 ## How to run -:
-Assumption - Private Subnet will try to create itself in default VPC's "*.*.129.0/24" CIDR. If conflicts apply may fail.
+## Assumption - Private Subnet will try to create itself in default VPC's 'x.x.129.0/24' CIDR. If conflicts apply may fail.
 Clone the Repo
 Replace Access & Secret Key in terrafor.tfvars file
 Replace Key_name with a keypair name you generated in aws
