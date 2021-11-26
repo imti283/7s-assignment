@@ -72,6 +72,26 @@ resource "aws_security_group" "sevens_alb_sg" {
   }
 }
 
+resource "aws_subnet" "sevens_private_subnet" {
+  vpc_id     = data.aws_vpc.default.id
+  cidr_block = cidrsubnets(data.aws_vpc.default.cidr_block,1,16,8)[2]
+  
+  tags = merge(
+    local.common_tags
+  )
+}
+
+resource "aws_route_table" "sevens_private_rt" {
+  vpc_id = data.aws_vpc.default.id
+  tags = merge(
+    local.common_tags
+  )
+}
+
+resource "aws_route_table_association" "sevens_private_rta" {
+  subnet_id      = aws_subnet.sevens_private_subnet.id
+  route_table_id = aws_route_table.sevens_private_rt.id
+}
 ###################################################
 ########       AUTO SCALING           #############
 ###################################################
@@ -124,7 +144,7 @@ resource "aws_autoscaling_group" "sevens_api_asg" {
     id      = aws_launch_template.sevens_backend_lt.id
     version = "$Latest"
   }
-  vpc_zone_identifier       = data.aws_subnet_ids.default_public_subnet.ids
+  vpc_zone_identifier       = [aws_subnet.sevens_private_subnet.id]
   min_size                  = 2
   max_size                  = 3
   desired_capacity          = 2

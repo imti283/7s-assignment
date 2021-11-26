@@ -33,6 +33,8 @@ data "aws_subnet_ids" "default_public_subnet" {
   }
 }
 
+data "aws_availability_zones" "available" {}
+
 ###################################################
 ########      variables               #############
 ###################################################
