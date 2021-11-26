@@ -11,7 +11,7 @@ Run
   
   >```terraform plan -out plan.out```
   
-  *  **Expected plan should show** - ```Plan: 8 to add, 0 to change, 0 to destroy.```
+  *  **Expected plan should show** - ```Plan: 11 to add, 0 to change, 0 to destroy.```
     
   >```terraform apply plan.out```
 
