@@ -1,4 +1,4 @@
-# 7s-assignment
+# Self Contained resource creation
 
 ## How to run -:
 ## Assumption - Private Subnet will try to create itself in default VPC's 'x.x.129.0/24' CIDR. If conflicts apply may fail.
